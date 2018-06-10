@@ -933,7 +933,10 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
 
 - (void)updateItemWidth
 {
-    _itemWidth = [_delegate carouselItemWidth:self] ?: _itemWidth;
+    if(_delegate && [_delegate carouselItemWidth:self]) {
+        _itemWidth = [_delegate carouselItemWidth:self];
+    }
+    
     if (_numberOfItems > 0)
     {
         if ([_itemViews count] == 0)
